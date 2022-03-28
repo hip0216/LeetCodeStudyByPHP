@@ -1,3 +1,4 @@
+<?php
 class Solution {
 
 /**
@@ -5,21 +6,24 @@ class Solution {
  * @return Integer
  */
 function firstUniqChar($s) {
-    $checks=[];
+    $ansnum=-1;
+    $hash=[];
     for($i=0;$i<strlen($s);$i++){
-        if(isset($checks[$s[$i]])){
-            $checks[$s[$i]]++;
+        if(isset($hash[$s[$i]])){
+            $hash[$s[$i]]['num']++;
         }
         else{
-            $checks[$s[$i]]=1;
+            $hash[$s[$i]]['index']=$i;
+            $hash[$s[$i]]['num']=1;
         }
     }
-    
-    for($i=0;$i<strlen($s);$i++){
-        if($checks[$s[$i]]==1){
-            return $i;
+    foreach($hash as $hash_arr){
+        if($hash_arr['num']==1){
+            $ansnum = $hash_arr['index'];
+            break;
         }
     }
-    return -1;
+    return $ansnum;
 }
 }
+?>

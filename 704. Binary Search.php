@@ -1,14 +1,26 @@
-<?php
 class Solution {
-    function search($nums, $target) {
-        $left=0;
-        $right=count($nums)-1;
-        while($left<=$right)
-        {
-            $midian=$left+floor(($right-$left)/2);
-            if ($nums[$midian]==$target) return $midian;
-            ($target<$nums[$midian])?$right=$midian-1:$left=$midian+1;
+<?php
+/**
+ * @param Integer[] $nums
+ * @param Integer $target
+ * @return Integer
+ */
+function search($nums, $target) {
+    $left=0;
+    $right=count($nums)-1;
+    while($left<=$right){
+        $median=floor($left+(($right-$left)/2));
+        if($nums[$median]<$target){
+            $left=$median+1;
         }
-        return -1;
+        elseif($nums[$median]>$target){
+            $right=$median-1;
+        }
+        else{
+            return $median;
+        }
     }
+    return -1;
 }
+}
+?>

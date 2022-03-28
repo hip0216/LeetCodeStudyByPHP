@@ -1,3 +1,4 @@
+<?php
 class Solution {
 
 /**
@@ -5,17 +6,15 @@ class Solution {
  * @return Integer[][]
  */
 function minimumAbsDifference($arr) {
+    $ans=[];
+    $min;
     sort($arr);
-    $hash=[];
-    $len=count($arr);
-    $i=1;
-    $minDistinct=99999999;
-    while($i<$len){
-        $distinct=$arr[$i]-$arr[$i-1];
-        $minDistinct=min($minDistinct,$distinct);
-        $hash[$distinct][]=[$arr[$i-1],$arr[$i]];
-        $i++;
+    for($i=0;$i<count($arr)-1;$i++){
+        $distinct=$arr[$i+1]-$arr[$i];
+        $ans[$distinct][] = [$arr[$i],$arr[$i+1]];
+        $min=($min)?min($min,$distinct):$distinct;
     }
-    return $hash[$minDistinct];
+    return $ans[$min];
 }
 }
+?>

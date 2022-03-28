@@ -1,19 +1,34 @@
 <?php
 class Solution {
-    function matrixReshape($nums, $r, $c) {
-        $ans=[];
-        $row=0;
-        $col=0;
-        if(count($nums)==0 or $r*$c!=count($nums)*count($nums[0])) return $nums;
-        for($i=0;$i<count($nums);$i++)
-        {
-            for($j=0;$j<count($nums[0]);$j++)
-            {
-               $ans[$row][$col]=$nums[$i][$j];
-               $col++;
-               ($col==$c)?($row++).($col=0):null;
+
+    /**
+     * @param Integer[][] $mat
+     * @param Integer $r
+     * @param Integer $c
+     * @return Integer[][]
+     */
+    function matrixReshape($mat, $r, $c) {
+        $row=count($mat);
+        $col=count($mat[0]);
+        if($row*$col != $r*$c){
+            return $mat;
+        }
+        $newrow=0;
+        $newcol=0;
+        $newarr=[];
+        for($i=0;$i<$row;$i++){
+            for($j=0;$j<$col;$j++){
+                if($newrow<$r && $newcol<$c){
+                    $newarr[$newrow][$newcol]=$mat[$i][$j];
+                }
+                $newcol++;
+                if($newrow<$r && $newcol==$c){
+                    $newrow++;
+                    $newcol=0;
+                }
             }
         }
-        return $ans;
+        return $newarr;
     }
 }
+?>

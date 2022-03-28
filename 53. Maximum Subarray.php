@@ -6,14 +6,16 @@ class Solution {
      * @return Integer
      */
     function maxSubArray($nums) {
-        $dp=array();
-        array_push($dp,$nums[0]);
-        $max_sum=0;
-        for($i=1;$i<count($nums);$i++)
-        {
-            $next=max($nums[$i],$nums[$i]+$dp[$i-1]);
-            array_push($dp,$next);
+        $max=$nums[0];
+        $now=$nums[0];
+        $min=$nums[0];
+        for($i=1;$i<count($nums);$i++){
+            $now+=$nums[$i];
+            $max=max($max,$now);
+            $max=max($max,$now-$min);
+            $min=min($min,$now);
         }
-        return max($dp);
+        return $max;
+    }
 }
-}
+?>
