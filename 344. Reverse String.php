@@ -1,15 +1,18 @@
 <?php
 class Solution {
+    function swap(&$a,&$b){
+        $c=$a;
+        $a=$b;
+        $b=$c;
+    }
+    /**
+     * @param String[] $s
+     * @return NULL
+     */
     function reverseString(&$s) {
-       $i=0;
-       $j=count($s)-1;
-       while($i<$j)
-       {
-           $temp=$s[$i];
-           $s[$i]=$s[$j];
-           $s[$j]=$temp;
-           $i++;
-           $j--;
-       }
+        for($i=0;$i<floor(count($s)/2);$i++){
+            $this->swap($s[$i],$s[count($s)-$i-1]);
+        }
     }
 }
+?>
