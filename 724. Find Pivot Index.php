@@ -1,12 +1,18 @@
 <?php
 class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
     function pivotIndex($nums) {
-        $sum_nums=array_sum($nums);
-        $left_sum=0;
-        for($i=0;$i<count($nums);$i++)
-        {
-            if($left_sum==($sum_nums-$left_sum-$nums[$i]))return $i;
-            $left_sum+=$nums[$i];
+        $sum=array_sum($nums);
+        $ansSum=0;
+        for($i=0;$i<count($nums);$i++){
+            if($ansSum==$sum-$ansSum-$nums[$i]){
+                return $i;
+            }
+            $ansSum+=$nums[$i];
         }
         return -1;
     }

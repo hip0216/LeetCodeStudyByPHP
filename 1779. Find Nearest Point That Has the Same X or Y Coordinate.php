@@ -1,3 +1,4 @@
+<?php
 class Solution {
 
 /**
@@ -7,27 +8,18 @@ class Solution {
  * @return Integer
  */
 function nearestValidPoint($x, $y, $points) {
-    $minS=99999999;
-    $minI='';
+    $min=99999;
+    $ans=-1;
     for($i=0;$i<count($points);$i++){
-        if($points[$i][0]==$x && $points[$i][1]==$y){
-            return $i;
-        }
-        else if($points[$i][0]==$x){
-            $s=abs($points[$i][1]-$y);
-            if($s<$minS){
-                $minS=$s;
-                $minI=$i;
-            }
-        }
-        else if($points[$i][1]==$y){
-            $s=abs($points[$i][0]-$x);
-            if($s<$minS){
-                $minS=$s;
-                $minI=$i;
+        if($points[$i][0]==$x || $points[$i][1]==$y){
+            $distinct=abs($x-$points[$i][0])+abs($y-$points[$i][1]);
+            if($distinct<$min){
+                $min=$distinct;
+                $ans=$i;
             }
         }
     }
-    return ($minI!=='')?$minI:-1;
+    return $ans;
 }
 }
+?>

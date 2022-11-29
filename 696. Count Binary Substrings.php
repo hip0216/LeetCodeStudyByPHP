@@ -1,3 +1,4 @@
+<?php
 class Solution {
 
 /**
@@ -20,3 +21,4 @@ function countBinarySubstrings($s) {
     return $total+min($pre,$stack);//最後不一定會輸出組數因此加上min($pre,$stack)
 }
 }
+?>

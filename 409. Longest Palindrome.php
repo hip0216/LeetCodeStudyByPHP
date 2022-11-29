@@ -1,14 +1,22 @@
 <?php
 class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
     function longestPalindrome($s) {
-        $ans=0;
-        $nums=str_split($s);
-        $nums=array_count_values($nums);
-        foreach($nums as $values)
-        {
-            $ans+=floor($values/2)*2;
-            ($ans%2==0 and $values %2==1)?$ans++:null;
+        $hash=[];
+        $pair=0;
+        for($i=0;$i<strlen($s);$i++){
+            if(isset($hash[$s[$i]])){
+                $pair++;
+                unset($hash[$s[$i]]);
+            }else{
+                $hash[$s[$i]]=1;
+            }
         }
-        return $ans;
+        return $pair*2+((count($hash))?1:0);
     }
 }
+?>
